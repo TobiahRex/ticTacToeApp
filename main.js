@@ -18,12 +18,13 @@ var boardStatus = {
   },
   player1   : {
     moves     : [],
-    possible  : [],
+    possible  : []
   },
   player2   : {
     moves     : [],
     possible  : []
-  }
+  },
+  moves     : []
 };
 
 // Init listener
@@ -82,28 +83,9 @@ function newMove(e){
 
 function outcome(boardStatus, $this, playerObj, playerId){
   let thisMove = $this;
-  console.log('index: ', $this);
-
-  // run $(this).attr('id') through a switchblock.  Depending whether or not it's diagonal or edge,
-  // you'll know what pops there are.
-
-  // Remove possible Answers
-
-  if(playerId === 1){
-    boardStatus.player2.possible.forEach(group => {
-      let match = group.indexOf(parseInt($this));
-      if(match > -1) console.log('P2 del: ', JSON.stringify(boardStatus.player2.possible.splice((match), 1)));
-    });
-
-  } else {
-    boardStatus.player1.possible.forEach(group => {
-    let match = group.indexOf(parseInt($this));
-    if(match > -1) console.log('P1 del: ', JSON.stringify(boardStatus.player1.possible.splice((match), 1)));
-    });
-  };
-
-
+  console.log('number to find: ', $this);
   // Push in possible Answers
+
   switch(parseInt($this)) {
     case 0 : playerObj.possible.push(boardStatus.answers.vertical[0], boardStatus.answers.horizontal[0], boardStatus.answers.diagonal[0]); break;
     case 1 : playerObj.possible.push(boardStatus.answers.vertical[1], boardStatus.answers.horizontal[0]); break;
@@ -115,14 +97,47 @@ function outcome(boardStatus, $this, playerObj, playerId){
     case 7 : playerObj.possible.push(boardStatus.answers.vertical[1], boardStatus.answers.horizontal[2]); break;
     case 8 : playerObj.possible.push(boardStatus.answers.vertical[2], boardStatus.answers.horizontal[2], boardStatus.answers.diagonal[0]); break;
   }
+  // Remove impossible Answers
+  if(CLICK_COUNT === 1) return console.log('O mvs: ',JSON.stringify(boardStatus.player1.possible));
+
+
+  //delete moves on player1 when player1 moves.
+  console.log('O mvs: ',JSON.stringify(boardStatus.player1.possible));
+  console.log('X mvs: ',JSON.stringify(boardStatus.player2.possible));
+
+
+  for(let i = 0 ; i < boardStatus.player1.possible.length ; i++){
+    let group = boardStatus.player1.possible[i];
+    boardStatus.player2.moves.forEach(move => {
+      let match = group.indexOf(parseInt(move));
+      console.log('O match: ', match, 'X move: ', move);
+      if(match > -1){
+        console.log('group O: ', i);
+        console.log('O del: ', JSON.stringify(boardStatus.player1.possible.splice((i), 1)));
+      };
+    })
+  };
+
+  // delete moves on player 2 when player2 moves.
+  for(let i = 0 ; i < boardStatus.player2.possible.length ; i++){
+    let group = boardStatus.player2.possible[i];
+    boardStatus.player1.moves.forEach(move => {
+      let match = group.indexOf(parseInt(move));
+      console.log('X match: ', match, 'X move: ', move);
+      if(match > -1) {
+        console.log('group X: ', i);
+        console.log('X del: ', JSON.stringify(boardStatus.player2.possible.splice((i), 1)));
+      };
+    })
+  };
+
+
 
 
 
 
   console.log('O mvs: ',JSON.stringify(boardStatus.player1.possible));
   console.log('X mvs: ',JSON.stringify(boardStatus.player2.possible));
-
-  // Remove impossible answers;
 }
 
 function boardGenerator(boardStatus){
