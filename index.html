@@ -2,11 +2,53 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Towers Of Hanoi</title>
+    <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
+    <script src="assets/vendor/jquery.min.js" charset="utf-8"></script>
     <script src="main.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1>TOH App</h1>
+    <h1>TicTacToe App</h1>
+  <hr>
+    <form action="">
+      <div class="row">
+        <h3>
+          <div class='status-text'>
+            <div class="player-1">
+              <b>
+                Player 1
+              </b>
+            </div>
+            <div class="player-2">
+              <b>
+                Player 2
+              </b>
+            </div>
+          </div>
+        </h3>
+
+          <fieldset class='game-input'>
+            <div class="row grid">
+              <div id="0" class="square"></div>
+              <div id="1" class="square"></div>
+              <div id="2" class="square"></div>
+              <div id="3" class="square"></div>
+              <div id="4" class="square"></div>
+              <div id="5" class="square"></div>
+              <div id="6" class="square"></div>
+              <div id="7" class="square"></div>
+              <div id="8" class="square"></div>
+            </div>
+          </fieldset>
+
+
+        </div>
+      </div>
+      <br>
+      <input type="number" placeholder="'3' = 3x3" value='3'>
+      <button class='new-game-btn' type="button" name="button">New Game</button>
+    </form>
+
+
   </body>
 </html>

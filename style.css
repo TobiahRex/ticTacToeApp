@@ -1,0 +1,55 @@
+body {
+  align-content: center;
+  text-align: center;
+  margin: auto;
+  width: 50%;
+}
+
+fieldset.game-input {
+  text-align: center;
+  width: 300px;
+  margin: auto;
+  height: 300px;
+  padding: 0px;
+  background-color: #000000;
+}
+
+div.status-text > div {
+  text-align: center;
+  width: auto;
+  margin: auto;
+  padding-left: 10%;
+  padding-right: 10%;
+  display: inline-block;
+  /*border: 0px solid white;*/
+}
+
+div.main > fieldset{
+  display: inline-block;
+}
+
+div.square {
+  /*background-image: url('assets/ttt_O.png');*/
+  background-size: 100%;
+  background-color: #ffffff;
+  border   : 1px solid black;
+  width    : 95px;
+  height   : 95.5px;
+  display: inline-block;
+}
+
+div.player-1 {
+  color : black;
+  font-size: 24px;
+  height: 50px;
+}
+
+div.player-2 {
+  color : black;
+  font-size: 24px;
+  height: 50px;
+}
+
+div#1.square {
+  /*background-image: url('assets/ttt_O.png');*/
+}
